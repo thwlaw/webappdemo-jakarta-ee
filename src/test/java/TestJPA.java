@@ -11,13 +11,12 @@ public class TestJPA {
 
 		EntityManagerFactory manFact = Persistence.createEntityManagerFactory("com.macroview.webappdemo");
 		EntityManager man = manFact.createEntityManager();
-		Query q = man.createQuery("from TestItem");
-		List<TestItem> items = q.getResultList();
+		List<TestItem> items = man.createQuery("from TestItem", TestItem.class).getResultList();
 		System.out.println("Total "+ items.size() + " items");
 		for (TestItem item : items) {
 			System.out.println(item.toString());
 		}
-		
+		man.close();
 	}
 
 }
