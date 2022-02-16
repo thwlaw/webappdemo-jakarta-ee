@@ -9,11 +9,22 @@ import jakarta.persistence.Table;
 public class TestItem {
 	
 	@Id
-	Integer id;
+	int id;
 	String item_name;
 	String item_value;
 	boolean status;
 	Date last_updated;
+	
+	public int getId() { return id; }
+	public void setId(int id) { this.id = id; }
+	public String getItem_name() { return item_name; }
+	public void setItem_name(String n) { item_name = n; }
+	public String getItem_value() { return item_value; }
+	public void setItem_value(String v) { item_value = v; }
+	public boolean getStatus() { return status; }
+	public void setStatus(boolean s) { status = s; }
+	public Date getLast_updated() { return last_updated; }
+	public void setLast_updated(Date d) { last_updated = d; }
 
 	public String toString() {
 		StringBuilder buf = new StringBuilder();
@@ -23,5 +34,14 @@ public class TestItem {
 		buf.append(" ("+status+") " );
 		buf.append(last_updated);
 		return buf.toString();
+	}
+	
+	public TestItem(int itemid, String n, String v)
+	{
+		id = itemid;
+		item_name = n;
+		item_value = v;
+		status = false;
+		last_updated = new Date();
 	}
 }
