@@ -1,6 +1,7 @@
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Table;
 public class TestItem {
 	
 	@Id
+	@GeneratedValue
 	int id;
 	String item_name;
 	String item_value;
@@ -36,6 +38,9 @@ public class TestItem {
 		return buf.toString();
 	}
 	
+	public TestItem() {
+		last_updated = new Date();
+	}
 	public TestItem(int itemid, String n, String v)
 	{
 		id = itemid;

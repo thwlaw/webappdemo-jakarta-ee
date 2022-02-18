@@ -16,6 +16,9 @@ public class TestJPA {
 		for (TestItem item : items) {
 			System.out.println(item.toString());
 		}
+		
+		TestItem it = man.find(TestItem.class, 1);
+		System.out.println(it);
 		man.close();
 	}
 

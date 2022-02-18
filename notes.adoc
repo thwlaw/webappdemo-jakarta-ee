@@ -1,0 +1,25 @@
+
+For Hibernate 5.6 setup with Jakarta JPA
+.In <tomee_home>/conf/system.properties
+----
+jakarta.persistence.provider = org.hibernate.jpa.HibernatePersistenceProvider
+----
+
+For DataSource setup
+.In <tomee_home>/conf/tomee.xml
+----
+<Resource id="webappdemo" type="DataSource">
+    JdbcDriver	com.mysql.cj.jdbc.Driver
+    JdbcUrl 	jdbc:mysql://appuser:mv123@localhost:3306/demo_db
+</Resource>
+<Resource id="webappdemo-nonjta" type="DataSource">
+    JdbcDriver	com.mysql.cj.jdbc.Driver
+    JdbcUrl 	jdbc:mysql://appuser:mv123@localhost:3306/demo_db
+    JtaManaged = false
+</Resource>
+----
+
+.Jar required in <tomee_home>/lib/
+* hibernate-core-jakarta-5.6.5.Final.jar
+* mysql-connector-java-8.0.27.jar
+
