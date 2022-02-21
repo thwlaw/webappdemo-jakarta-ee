@@ -2,7 +2,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 import jakarta.ejb.EJB;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -50,4 +54,27 @@ public class ItemService {
 		return Response.ok()
 				.entity(res).build();
 	}
+	
+	@POST
+	@Path("/add")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public TestItem add(TestItem item) {
+		itemService.add(item);
+		return item;
+	}
+	
+	@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public TestItem update(TestItem item) {
+		itemService.update(item);
+		return item;
+	}
+	
+	@DELETE
+	@Path("/delete")
+	public void delete(@PathParam("id") int id) {
+		itemService.delete(id);
+	}
+	
 }

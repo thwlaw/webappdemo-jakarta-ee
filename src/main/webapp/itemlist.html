@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="jquery-ui.css">
+<style>
+table {
+  border: 1px solid black;
+}
+
+</style>
+<script src="js/jquery-3.6.0.js"></script>
+<script src="js/jquery-ui-1.13.1.js"></script>
+<script>
+function refresh_table(jsondata) {
+	var tbody = $('tbody',  "#tableview" );
+	console.log(tbody);
+	for (var i=0; i< jsondata.length; i++) {
+		var itm_url = "api/item/detail/"+jsondata[i].id;
+		var nelm = "<tr>"+"<td>"+"<a href='"+itm_url+"'>"+jsondata[i].id+"</a>"+"</td>"+
+					"<td>"+jsondata[i].item_name+"</td>"+
+					"<td>"+jsondata[i].item_value+"</td>"+
+					"<td>"+jsondata[i].status+"</td>"+
+					"<td>"+new Date(jsondata[i].last_updated.time).toLocaleString()+"</td>"
+					+"</tr>";
+		tbody.append(nelm);
+	}
+	console.log(tbody);
+}
+
+$( document ).ready(function() {	
+	$.getJSON("api/item/list", function(jsondata) {
+		$( "#dataview" ).val(JSON.stringify(jsondata));
+		refresh_table(jsondata);
+		console.log(jsondata);
+	});
+});
+
+/*
+$.getJSON("api/item/list", function(jsondata) {
+	console.log("table data: "+jsondata.length);
+	refresh_table(jsondata);
+	$( "#dataview" ).val(JSON.stringify(jsondata));
+	console.log(jsondata);
+});
+ */
+
+</script>
+<title>Item list</title>
+</head>
+<body>
+<h1>Item list</h1>
+
+<table id="tableview">
+<thead><tr>
+<th>id</th>
+<th>name</th>
+<th>value</th>
+<th>status</th>
+<th>last updated</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+<br>
+
+<textarea id="dataview" cols="80" rows="18">
+</textarea>
+</body>
+</html>
