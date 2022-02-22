@@ -15,11 +15,13 @@ table {
 function delitm_url(itm_id) {
 	return "api/item/delete/"+itm_id;
 }
+function updtitm_url(itm_id) {
+	return "updateitem.jsp?id="+itm_id;
+}
 function refresh_table(jsondata) {
 	var tbody = $('tbody',  "#tableview" );
 	for (var i=0; i< jsondata.length; i++) {
-		var itm_url = "api/item/detail/"+jsondata[i].id;
-		var nelm = "<tr>"+"<td>"+"<a href='"+itm_url+"'>"+jsondata[i].id+"</a>"+"</td>"+
+		var nelm = "<tr>"+"<td>"+"<a href='"+updtitm_url(jsondata[i].id)+"'>"+jsondata[i].id+"</a>"+"</td>"+
 					"<td>"+jsondata[i].item_name+"</td>"+
 					"<td>"+jsondata[i].item_value+"</td>"+
 					"<td>"+jsondata[i].status+"</td>"+
