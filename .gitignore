@@ -9,3 +9,4 @@ bin
 
 # others
 deploy-test.bat
+src/test/scripts

@@ -72,7 +72,7 @@ public class ItemService {
 	}
 	
 	@DELETE
-	@Path("/delete")
+	@Path("/delete/{id}")
 	public void delete(@PathParam("id") int id) {
 		itemService.delete(id);
 	}

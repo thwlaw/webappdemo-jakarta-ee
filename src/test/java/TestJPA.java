@@ -18,6 +18,12 @@ public class TestJPA {
 		
 		TestItem it = man.find(TestItem.class, 1);
 		System.out.println(it);
+		
+		TestItem nitm = new TestItem(0, "JJ", "BB");
+		man.getTransaction().begin();
+		man.persist(nitm);
+		man.getTransaction().commit();
+		System.out.println(nitm+" added");
 		man.close();
 	}
 

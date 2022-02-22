@@ -12,20 +12,36 @@ table {
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/jquery-ui-1.13.1.js"></script>
 <script>
+function delitm_url(itm_id) {
+	return "api/item/delete/"+itm_id;
+}
 function refresh_table(jsondata) {
 	var tbody = $('tbody',  "#tableview" );
-	console.log(tbody);
 	for (var i=0; i< jsondata.length; i++) {
 		var itm_url = "api/item/detail/"+jsondata[i].id;
 		var nelm = "<tr>"+"<td>"+"<a href='"+itm_url+"'>"+jsondata[i].id+"</a>"+"</td>"+
 					"<td>"+jsondata[i].item_name+"</td>"+
 					"<td>"+jsondata[i].item_value+"</td>"+
 					"<td>"+jsondata[i].status+"</td>"+
-					"<td>"+new Date(jsondata[i].last_updated.time).toLocaleString()+"</td>"
-					+"</tr>";
+					"<td>"+new Date(jsondata[i].last_updated.time).toLocaleString()+"</td>"+
+					"<td>"+"<button id='delbtn-"+jsondata[i].id+"' type='button' itm_id='"+jsondata[i].id+"'>DEL</button>"+"</td>"+
+					"</tr>";
 		tbody.append(nelm);
+		$( "#delbtn-"+jsondata[i].id ).on('click', function() {
+			//console.log($(this).attr('itm_id'));
+			$.ajax({
+				url: delitm_url($( this ).attr('itm_id')),
+				type: 'DELETE',
+				success: function () {
+					$( "#dataview" ).val("Item deleted");
+				}
+			}).fail(function(xhr, statusText, error) {
+				$( "#dataview" ).val("Failed: "+xhr.status+" "+statusText);
+				console.log(error);
+				console.dir(xhr);
+			});
+		});
 	}
-	console.log(tbody);
 }
 
 $( document ).ready(function() {	
@@ -35,15 +51,6 @@ $( document ).ready(function() {
 		console.log(jsondata);
 	});
 });
-
-/*
-$.getJSON("api/item/list", function(jsondata) {
-	console.log("table data: "+jsondata.length);
-	refresh_table(jsondata);
-	$( "#dataview" ).val(JSON.stringify(jsondata));
-	console.log(jsondata);
-});
- */
 
 </script>
 <title>Item list</title>
@@ -58,6 +65,7 @@ $.getJSON("api/item/list", function(jsondata) {
 <th>value</th>
 <th>status</th>
 <th>last updated</th>
+<th>DELETE</th>
 </tr></thead>
 <tbody></tbody>
 </table>

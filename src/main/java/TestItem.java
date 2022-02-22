@@ -1,7 +1,11 @@
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -10,11 +14,12 @@ import jakarta.persistence.Table;
 public class TestItem {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	String item_name;
 	String item_value;
 	boolean status;
+	@UpdateTimestamp
 	Date last_updated;
 	
 	public int getId() { return id; }

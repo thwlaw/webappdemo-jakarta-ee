@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="js/jquery-3.6.0.js"></script>
+<script src="js/jquery-ui-1.13.1.js"></script>
+<script>
+
+</script>
+<title>Add item</title>
+</head>
+<body>
+<h1>Add item</h1>
+
+Name: <input type="text" id="item_name" name="item_name"><br>
+Value: <input type="text" id="item_value" name="item_value"><br>
+<button type="button" id="addbtn">Add</button>
+<script>
+$( "#addbtn" ).on("click", function(event) {
+	var itm_n = $( "#item_name" ).val();
+	var itm_v = $( "#item_value" ).val();
+	var json = { 'id': 0,
+			'item_name': itm_n, 'item_value': itm_v,
+			'status': false,
+			'last_updated': null};
+	console.log(json);
+	$.post({
+		url: "api/item/add", 
+		data: JSON.stringify(json), 
+		dataType: "json",
+		contentType: "application/json",
+		success: function (data) {
+			$( "#resultarea" ).val("Added: "+JSON.stringify(data));
+		}
+	}).fail(function(xhr, statusText, error) {
+		$( "#resultarea" ).val("Failed: "+xhr.status+" "+statusText);
+		console.log(error);
+		console.dir(xhr);
+	})
+});
+</script>
+<br>
+<textarea id="resultarea" cols="80" rows="3"></textarea>
+</body>
+</html>
