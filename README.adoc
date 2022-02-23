@@ -1,0 +1,15 @@
+A webapp demo using Jakarta EE
+===============================
+
+## Overview
+
+A Jakarta EE webapp using RESTful service, EJB container service, Jakarta persistence API, Hibernate, jQuery. 
+
+## Components
+
+- Apache TomEE 9.0
+- MySQL 8.0
+- JPA 3.0
+- Hibernate 5.6
+- jQuery 3.6
+
