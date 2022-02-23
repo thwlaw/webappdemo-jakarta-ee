@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" 
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" 
+		xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+						    https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" 
 		id="webappdemo-jakarta-ee"
 		version="5.0">
 	<display-name>webappdemo-jakarta-ee</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -22,4 +19,45 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
     
+<!--
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>webappdemo-jakarta-ee</realm-name>
+  </login-config>
+  
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Web GUI</web-resource-name>
+      <url-pattern>/images/*</url-pattern>
+      <url-pattern>/js/*</url-pattern>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+       <role-name>web-gui</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>API service</web-resource-name>
+      <url-pattern>/api/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+       <role-name>web-api</role-name>
+    </auth-constraint>
+  </security-constraint>
+  
+  <security-role>
+    <description>
+      Webapp pages
+    </description>
+    <role-name>web-gui</role-name>
+  </security-role>
+  <security-role>
+    <description>
+      API services
+    </description>
+    <role-name>web-api</role-name>
+  </security-role>
+-->
+  
 </web-app>
